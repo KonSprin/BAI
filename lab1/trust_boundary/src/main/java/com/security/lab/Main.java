@@ -16,16 +16,10 @@ public class Main {
         EnvironmentContext context = new EnvironmentContext();
         context.put("userId", "doctor_123");
         
-        System.out.println("╔═══════════════════════════════════════════════════════════════╗");
-        System.out.println("║   MEDICAL APP SECURITY TEST - TRUST BOUNDARY VIOLATION       ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════════╝\n");
+        System.out.println("## MEDICAL APP SECURITY TEST - TRUST BOUNDARY VIOLATION");
         
-        // =================================================================
         // TEST 1: Prawidłowe dane - oba powinny ZAAKCEPTOWAĆ
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 1: VALID INPUT - Proper medication dosage              │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 1: VALID INPUT - Proper medication dosage");
         
         String validInputVuln = "{\"patient\":\"Jan Kowalski\",\"medication\":\"paracetamol\",\"dosage_mg\":500}";
         String validInputSecure = "{\"patient_id\":\"1\",\"medication\":\"paracetamol\",\"dosage_mg\":500,\"nonce\":\"nonce001\"}";
@@ -39,12 +33,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
         // TEST 2: ATAK - Ujemna dawka - oba powinny ODRZUCIĆ
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 2: ATTACK - Negative dosage                            │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 2: ATTACK - Negative dosage");
         
         String negativeInputVuln = "{\"patient\":\"Anna Nowak\",\"medication\":\"morfina\",\"dosage_mg\":-500}";
         String negativeInputSecure = "{\"patient_id\":\"2\",\"medication\":\"morfina\",\"dosage_mg\":-500,\"nonce\":\"nonce002\"}";
@@ -58,12 +48,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
         // TEST 3: ATAK - Śmiertelna dawka
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 3: ATTACK - Lethal dosage (999999 mg)                  │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 3: ATTACK - Lethal dosage (999999 mg)");
         
         String lethalInputVuln = "{\"patient\":\"Piotr Wiśniewski\",\"medication\":\"paracetamol\",\"dosage_mg\":999999}";
         String lethalInputSecure = "{\"patient_id\":\"1\",\"medication\":\"paracetamol\",\"dosage_mg\":999999,\"nonce\":\"nonce003\"}";
@@ -77,12 +63,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
         // TEST 4: ATAK - Dawka przekraczająca limit dla konkretnego leku
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 4: ATTACK - Overdose of morphine (50mg > 15mg max)     │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 4: ATTACK - Overdose of morphine (50mg > 15mg max)");
         
         String overdoseInputVuln = "{\"patient\":\"Anna Nowak\",\"medication\":\"morfina\",\"dosage_mg\":50}";
         String overdoseInputSecure = "{\"patient_id\":\"2\",\"medication\":\"morfina\",\"dosage_mg\":50,\"nonce\":\"nonce004\"}";
@@ -96,12 +78,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
         // TEST 5: ATAK - SQL Injection w nazwie pacjenta
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 5: ATTACK - SQL Injection in patient name              │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 5: ATTACK - SQL Injection in patient name");
         
         String sqlInjectionVuln = "{\"patient\":\"'; DROP TABLE patients; --\",\"medication\":\"paracetamol\",\"dosage_mg\":500}";
         String sqlInjectionSecure = "{\"patient_id\":\"'; DROP TABLE patients; --\",\"medication\":\"paracetamol\",\"dosage_mg\":500,\"nonce\":\"nonce005\"}";
@@ -115,12 +93,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
-        // TEST 6: ATAK - Nieautoryzowany lek dla pacjenta
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 6: ATTACK - Unauthorized medication for patient        │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        // TEST 6: ATAK - Nieautoryzowany lek dla pacjent
+        System.out.println("│ TEST 6: ATTACK - Unauthorized medication for patient");
         System.out.println("Note: Patient #1 (Jan Kowalski) is NOT authorized to receive morphine\n");
         
         String unauthorizedVuln = "{\"patient\":\"Jan Kowalski\",\"medication\":\"morfina\",\"dosage_mg\":10}";
@@ -135,12 +109,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
         // TEST 7: ATAK - Replay attack (ten sam nonce)
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 7: ATTACK - Replay attack (duplicate nonce)            │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 7: ATTACK - Replay attack (duplicate nonce)");
         System.out.println("Note: Using the same nonce as TEST 1 (nonce001)\n");
         
         String replayInputVuln = "{\"patient\":\"Jan Kowalski\",\"medication\":\"paracetamol\",\"dosage_mg\":500}";
@@ -155,12 +125,8 @@ public class Main {
         System.out.println("\n" + "=".repeat(65) + "\n");
         sleep(100);
         
-        // =================================================================
         // TEST 8: ATAK - Pacjent wypisany ze szpitala
-        // =================================================================
-        System.out.println("┌─────────────────────────────────────────────────────────────┐");
-        System.out.println("│ TEST 8: ATTACK - Discharged patient                          │");
-        System.out.println("└─────────────────────────────────────────────────────────────┘");
+        System.out.println("│ TEST 8: ATTACK - Discharged patient");
         System.out.println("Note: Patient #3 (Andrzej Suchy) has been discharged\n");
         
         String dischargedInputVuln = "{\"patient\":\"Andrzej Suchy\",\"medication\":\"paracetamol\",\"dosage_mg\":500}";
@@ -172,10 +138,8 @@ public class Main {
         System.out.println("\n🔒 SECURE VERSION Input: " + dischargedInputSecure);
         testSecure(secureApp, context, dischargedInputSecure, false, "PATIENT_UNAVAILABLE");
         
-        // =================================================================
         // PODSUMOWANIE
-        // =================================================================
-        System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
+        System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");                               
         System.out.println("║                      TEST SUMMARY                             ║");
         System.out.println("╠═══════════════════════════════════════════════════════════════╣");
         System.out.printf("║ 🔓 VULNERABLE VERSION:  %d PASSED / %d FAILED (Total: 8)      ║%n", 
