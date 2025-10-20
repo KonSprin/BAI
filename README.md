@@ -1,4 +1,9 @@
 # Bezpieczeńdtwo Aplikacji Internetowych
 
-1. [Lab 1](lab1/README.md)
+## LAB 1
+
+[Trust Boundary results](lab1/trust_boundary/README.md)
+
+[XSS Results](lab1/xss/README.md) \
+Wszystkie wygenerowane htmle znajdują się w folderze htmls
 
